@@ -15,6 +15,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     Condition health { get { return uiCondition.health; } }
     Condition hunger {  get { return uiCondition.hunger; } }
     Condition stamina {  get { return uiCondition.stamina; } }
+    Condition speed {  get { return uiCondition.speed; } }
 
     public float noHungerHealthDecay;
 
@@ -66,5 +67,23 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
         stamina.Subtract(amount);
         return true;
+    }
+
+    public void IncreaseSpeed(float amount, float duration)
+    {
+        PlayerController controller = GetComponent<PlayerController>();
+
+        if (controller != null)
+        {
+            controller.moveSpeed += amount;
+            StartCoroutine(RestoreSpeed(controller, amount, duration));
+        }
+    }
+
+    private IEnumerator RestoreSpeed(PlayerController controller, float amount, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        controller.moveSpeed -= amount;
     }
 }
