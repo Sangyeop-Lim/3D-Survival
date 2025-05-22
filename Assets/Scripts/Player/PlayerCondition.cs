@@ -24,7 +24,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     void Update()
     {
         //hunger.Subtract(hunger.passiveValue * Time.deltaTime);
-        //stamina.Add(stamina.passiveValue * Time.deltaTime);
+        
+        stamina.Add(stamina.passiveValue * Time.deltaTime);
 
         //if (hunger.curValue == 0f)
         //{
