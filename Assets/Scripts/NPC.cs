@@ -37,7 +37,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     private float playerDistance;
 
-    public float field0fView = 120f;
+    public float fieldOfView = 120f;
 
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
@@ -137,7 +137,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     void AttckingUpdate()
     {
-        if (playerDistance < attackDistance && IsPlayerInField0fView())
+        if (playerDistance < attackDistance && IsPlayerInFieldOfView())
         {
             agent.isStopped = true;
             if (Time.time - lastAttackTime > attackRate)
@@ -173,11 +173,11 @@ public class NPC : MonoBehaviour , IDamagable
         }
     }
 
-    bool IsPlayerInField0fView()
+    bool IsPlayerInFieldOfView()
     {
         Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToPlayer);
-        return angle < field0fView * 0.5f;
+        return angle < fieldOfView * 0.5f;
     }
 
     public void TakePhysicalDamage(int damage)

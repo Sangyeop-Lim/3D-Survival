@@ -31,9 +31,12 @@ public class Interaction : MonoBehaviour
 
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction * maxCheckDistance, Color.red);
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
+                if (hit.collider.transform.IsChildOf(transform)) return;
+
                 if (hit.collider.gameObject != curInteractGameObject)
                 {
                     curInteractGameObject = hit.collider.gameObject;

@@ -95,6 +95,11 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
+        //Vector3 origin = transform.position + Vector3.down * 0.6f;
+        //float rayLength = 0.2f;
+
+        //return Physics.Raycast(origin, Vector3.down, rayLength, groundLayerMask);
+
         Ray[] rays = new Ray[4]
         {
             new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),

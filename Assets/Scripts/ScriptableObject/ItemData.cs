@@ -13,7 +13,7 @@ public enum ItemType
 public enum ConsumableType
 {
     Health,
-    Hunger,
+    //Hunger,
     Speed
 }
 
