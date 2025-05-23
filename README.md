@@ -1,6 +1,6 @@
 ![image](https://github.com/user-attachments/assets/09e2ad60-cfa7-40df-b668-885180e97ce1)
 
-주요 특징
+주요 특징 : 
 3인칭 시점에서 플레이어 조작
 
 커피 아이템: 먹으면 이동 속도 빨라짐, 10초 후 리스폰
