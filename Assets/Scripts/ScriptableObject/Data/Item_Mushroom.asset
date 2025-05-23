@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f944f8e636fb5c499bc9e0e603fcd91, type: 3}
-  m_Name: Item_Coffe
+  m_Name: Item_Mushroom
   m_EditorClassIdentifier: 
-  displayName: "\uCEE4\uD53C"
-  description: "\uC77C\uC815\uC2DC\uAC04 \uB3D9\uC548 \uC774\uB3D9\uC18D\uB3C4\uAC00
-    \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  displayName: "\uBC84\uC12F"
+  description: "5\uCD08\uB3D9\uC548 \uB354\uBE14 \uC810\uD504\uB97C \uD65C\uC131\uD654\uC2DC\uCF1C\uC90D\uB2C8\uB2E4."
   type: 2
   icon: {fileID: 0}
-  dropPrefab: {fileID: 2406135306505634773, guid: c44202c4840ef1645a099a8260f1c2f0, type: 3}
+  dropPrefab: {fileID: 7083533961307337164, guid: 13efec6c7b266514eb2fe9ba2542dafc, type: 3}
   canStack: 0
   maxStackAmount: 0
   consumables: []
