@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     [Header("Moverment")]
     public float moveSpeed;
     public float jumpPower;
+
+    public bool doubleJumpEnabled = false;
+    private bool hasDoubleJumped = false;
+
     private Vector2 curMovementInput;
     public LayerMask groundLayerMask;
 
@@ -39,6 +43,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+
+        if (IsGrounded())
+        {
+            hasDoubleJumped = false;
+        }
     }
 
     private void LateUpdate()
@@ -86,17 +95,34 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase != InputActionPhase.Started) return;
+        
+        if (IsGrounded())
         {
+            Debug.Log("1단 점프 실행");
+            hasDoubleJumped = false;
+            {
+                if (CharacterManager.Instance.Player.condition.UseStamina(10f))
+                {
+                    _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+                }
+            }
+        }
+        else if (doubleJumpEnabled && !hasDoubleJumped)
+        {
+            Debug.Log("더블 점프 실행");
+            hasDoubleJumped = true;
+
             if (CharacterManager.Instance.Player.condition.UseStamina(10f))
             {
+                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
                 _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
             }
         }
     }
 
 
-    bool IsGrounded()
+    private bool IsGrounded()
     {
         //Vector3 origin = transform.position + Vector3.down * 0.6f;
         //float rayLength = 0.2f;
@@ -105,10 +131,10 @@ public class PlayerController : MonoBehaviour
 
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) +(transform.up * 0.01f), Vector3.down)
+        new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
+        new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
+        new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down),
+        new Ray(transform.position + (-transform.right * 0.2f) +(transform.up * 0.01f), Vector3.down)
         };
 
         for (int i = 0; i < rays.Length; i++)

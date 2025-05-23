@@ -87,4 +87,21 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
         controller.moveSpeed -= amount;
     }
+
+    public void EnableDoubleJump(float duration)
+    {
+        PlayerController controller = GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            Debug.Log("더블 점프 활성화");
+            controller.doubleJumpEnabled = true;
+            StartCoroutine(DisableDoubleJumpAfter(controller, duration));
+        }
+    }
+
+    private IEnumerator DisableDoubleJumpAfter(PlayerController controller, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        controller.doubleJumpEnabled = false;
+    }
 }
