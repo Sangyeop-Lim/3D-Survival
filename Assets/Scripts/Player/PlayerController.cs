@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
         cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        transform.Rotate(Vector3.up * mouseDelta.x * lookSensitivity);
     }
 
     public void OnMove(InputAction.CallbackContext context)
