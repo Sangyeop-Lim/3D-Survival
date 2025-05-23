@@ -16,6 +16,8 @@ public class DoubleJumpItem : MonoBehaviour
         itemRenderer = itemCollider.GetComponent<Renderer>();
     }
 
+    [SerializeField] private UIEffectTimer uiEffectTimer;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -24,6 +26,7 @@ public class DoubleJumpItem : MonoBehaviour
             if (condition != null)
             {
                 condition.EnableDoubleJump(duration);
+                //uiEffectTimer?.ShowDoubleJumpEffect(duration);
                 StartCoroutine(Respawn());
             }
         }

@@ -17,6 +17,8 @@ public class SpeedBoostItem : MonoBehaviour
         itemRenderer = itemCollider.GetComponent<Renderer>();
     }
 
+    [SerializeField] private UIEffectTimer uiEffectTimer;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -25,6 +27,7 @@ public class SpeedBoostItem : MonoBehaviour
             if (condition != null)
             {
                 condition.IncreaseSpeed(speedAmount, duration);
+                //uiEffectTimer?.ShowSpeedEffect(duration);
                 StartCoroutine(Respawn());
             }
         } 
